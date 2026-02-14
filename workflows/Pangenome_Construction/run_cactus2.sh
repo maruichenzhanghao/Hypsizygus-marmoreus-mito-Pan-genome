@@ -1,0 +1,25 @@
+#!/bin/bash
+
+singularity exec /home/maxinxin/software/01.singlity/cactus.sif \
+cactus-pangenome \
+  ./jobstore \
+  ./mito_samples.txt \
+  --outDir mito_results \
+  --outName mito_pg \
+  --reference f2 \
+  --noSplit \
+  --maxLen 200000 \
+  --clip 0 \
+  --vcf \
+  --gfa full \
+  --gbz \
+  --xg \
+  --odgi \
+  --viz \
+  --mgCores 16 \
+  --mgMemory 16G \
+  --indexCores 8 \
+  --indexMemory 8G \
+  --vcfwave \
+  --giraffe \
+  --lastTrain

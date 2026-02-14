@@ -1,208 +1,210 @@
-# Hypsizygus marmoreus Mitochondrial Pan-genome
+# Mitochondrial Graph-Based Pan-Genome Analysis of *Hypsizygus marmoreus*
 
-## 真姬菇（*Hypsizygus marmoreus*）线粒体泛基因组分析
+**Structural Variation, Adaptive Evolution and Its Implications for Germplasm Resource Improvement**
 
-[![GitHub](https://img.shields.io/badge/GitHub-Hypsizygus--marmoreus--mito--Pan--genome-blue)](https://github.com/maruichenzhanghao/Hypsizygus-marmoreus-mito-Pan-genome)
+Ruichen Ma<sup>1†</sup>, Wenyun Li<sup>2†</sup>, Yongmei Miao<sup>1</sup>, Ruiheng Yang<sup>2,3</sup>, Youran Shao<sup>2</sup>, Junjun Shang<sup>2,3</sup>, Yan Li<sup>2,3</sup>, Yuan Gao<sup>2</sup>, Dapeng Bao<sup>2,3\*</sup>, Yingying Wu<sup>2,3\*</sup>
+
+<sup>1</sup> Anhui Science and Technology University, Fengyang 233100, China  
+<sup>2</sup> National Engineering Research Center of Edible Fungi, Institute of Edible Fungi, Shanghai Academy of Agricultural Sciences, Shanghai 201403, China  
+<sup>3</sup> Shanghai Key Laboratory of Agricultural Genetics and Breeding, Shanghai Academy of Agricultural Sciences, Shanghai 201106, China  
+
+<sup>†</sup> These authors contributed equally to this work.  
+<sup>\*</sup> Correspondence: baodapeng@saas.sh.cn (D.B.); wuyingying@sibs.ac.cn (Y.W.)
 
 ---
 
-## 📖 项目概述
+## Abstract
 
-本项目对 **31 株真姬菇** 线粒体基因组进行了泛基因组分析，包括：
-- 线粒体基因组组装与注释
-- 基于 Cactus 的泛基因组图构建
-- 变异检测与统计分析
-- 系统发育分析
-- dN/dS 选择压力分析
-- 内含子多态性分析
-- 覆盖深度验证
-- 基因重排分析
+As semi-autonomous organelles, mitochondria function through the coordinated regulation of nuclear genomes and their own genetic material. In this study, we conducted a comparative mitochondrial genome analysis of **31 *Hypsizygus marmoreus* strains** (4 newly sequenced monokaryons and 27 public datasets). The mitochondrial genome sizes ranged from 98,284 to 111,087 bp, exhibiting significant structural diversity driven by non-coding region dynamics and intronic polymorphisms. The 31 mitochondrial genomes were assembled into a **graph-based pan-genome (220,364 bp, 217 nodes)** capturing abundant SNPs, InDels, and structural variations. Eight gene rearrangement patterns and five genetic clusters were identified, providing breeding-relevant genetic markers and a genomic framework for germplasm classification and molecular breeding of *H. marmoreus*.
 
-## 📊 主要发现
+**Keywords:** *Hypsizygus marmoreus*; Mitochondria; Structural variation; Graph-based pan-genome; Germplasm resource development
 
-| 分析模块 | 关键结果 |
-|----------|----------|
-| **泛基因组图** | 217 节点 / 293 边 / 总长 220,364 bp |
-| **变异统计** | 2,506 个变异: SNPs=1,563, InDels=522, MNPs=246 |
-| **区域分布** | 基因间区 78.9%, CDS 15.6%, rRNA 5.4%, tRNA ~0% |
-| **选择压力** | 15 个核心基因全部 ω < 1 → 纯化选择 |
-| **内含子** | cox1 有 5 种内含子模式, 内含子多态性丰富 |
-| **基因重排** | IR 介导的 2 个倒位事件 |
+---
 
-## 🗂️ 仓库结构
+## Figure Materials
+
+Each figure directory contains the plotting scripts used to generate the corresponding figure, along with a README describing the methods, tools, and panel descriptions.
+
+| Figure | Description | Directory |
+|--------|-------------|-----------|
+| **Fig. 1** | Mitochondrial genome map (circular, OGDRAW) | [`Figure1/`](Figure1/) |
+| **Fig. 2** | tRNA secondary structure prediction | [`Figure2/`](Figure2/) |
+| **Fig. 3** | Repetitive sequence heatmap (SSR, interspersed, tandem) | [`Figure3/`](Figure3/) |
+| **Fig. 4** | Relative synonymous codon usage (RSCU) analysis | [`Figure4/`](Figure4/) |
+| **Fig. 5** | Ka/Ks selective pressure analysis (15 core PCGs) | [`Figure5/`](Figure5/) |
+| **Fig. 6** | Nucleotide diversity (π) and gene rearrangement patterns | [`Figure6/`](Figure6/) |
+| **Fig. 7** | Phylogenetic tree and population structure (ADMIXTURE + IQ-TREE) | [`Figure7/`](Figure7/) |
+| **Fig. 8** | Pan-genome gene families, intron analysis, and PAV | [`Figure8/`](Figure8/) |
+| **Fig. 9** | Graph-based pan-genome construction and structural variation | [`Figure9/`](Figure9/) |
+
+### Figure Overview
+
+<p align="center">
+  <img src="figures/Figure1.png" width="45%" alt="Figure 1"/>
+  <img src="figures/Figure7.png" width="45%" alt="Figure 7"/>
+</p>
+<p align="center">
+  <img src="figures/Figure8.png" width="45%" alt="Figure 8"/>
+  <img src="figures/Figure9.png" width="45%" alt="Figure 9"/>
+</p>
+
+---
+
+## Workflows and Methods
+
+### Genome Assembly
+
+Scripts for mitochondrial genome assembly from HiFi and Illumina data.  
+→ [`workflows/Assembly/`](workflows/Assembly/)
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Flye | v2.9.5 | *De novo* HiFi assembly |
+| GetOrganelle | v1.7.7.1 | Illumina mitochondrial assembly |
+| Bandage | v0.9.0 | Assembly graph visualization |
+
+### Genome Annotation
+
+Scripts for mitochondrial genome annotation and format conversion.  
+→ [`workflows/Annotation/`](workflows/Annotation/)
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| MFannot | — | Automated mitochondrial annotation |
+| Mitos | — | Automated mitochondrial annotation |
+| Geneious | v2025.0.2 | Manual annotation correction |
+| OGDRAW | v1.3.1 | Circular genome map visualization |
+| tRNAscan-SE | v2.0.12 | tRNA gene prediction |
+
+### Graph Pan-Genome Construction
+
+Scripts for Cactus-based graph pan-genome construction and variant calling.  
+→ [`workflows/Pangenome_Construction/`](workflows/Pangenome_Construction/)
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| Minigraph-Cactus | v2.9.3 | Graph pan-genome construction |
+| vg toolkit | v1.6.1.0 | Variant calling (`vg call`) |
+| bcftools | v1.19 | VCF statistics and filtering |
+| ODGI | v0.9.2 | Graph topology analysis |
+| Bandage | v0.9.0 | GFA graph visualization |
+
+### Comparative Analysis
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| MAFFT | v7.526 | Multiple sequence alignment |
+| IQ-TREE | v2.0.7 | Maximum-likelihood phylogeny |
+| ADMIXTURE | v1.3.0 | Population structure analysis |
+| pamlX | v1.3.1 | Ka/Ks calculation |
+| DnaSP | v6 | SNP detection and π calculation |
+| OrthoFinder | v2.55 | Gene family clustering |
+| PhyloSuite | v1.2.3 | PCG sequence extraction |
+| MEGA | v11 | RSCU calculation |
+| MISA | — | SSR identification |
+| REPuter | — | Interspersed repeat detection |
+| TRF | — | Tandem repeat detection |
+
+---
+
+## Sample Information
+
+This study used **31 *H. marmoreus* strains**:
+
+| Category | Strains | Source |
+|----------|---------|--------|
+| Self-sequenced HiFi monokaryons | f2, f4, nn12-1, nn12-17 | This study (PV946885, PX600725, PX600726, PX600727) |
+| NCBI reference genomes | MF133443.1, MH382825.1 | GenBank |
+| Public WGS datasets | 25 strains (SRR series) | NCBI SRA |
+
+---
+
+## Key Findings
+
+| Analysis | Result |
+|----------|--------|
+| Genome size range | 98,284 – 111,087 bp |
+| Graph pan-genome | 220,364 bp, 217 nodes, 293 edges |
+| Total variants | 2,506 sites: SNPs (1,563), InDels (522), MNPs (246), Others (175) |
+| Variant distribution | Intergenic 78.9%, CDS 15.6%, rRNA 5.4%, tRNA ~0% |
+| Selective pressure | All 15 core genes: ω < 1 (purifying selection) |
+| Rearrangement | 8 gene arrangement patterns, 2 IR-mediated inversion events |
+| Population structure | 5 genetic clusters (K=5 optimal) |
+
+---
+
+## Repository Structure
 
 ```
 .
-├── 01.assembly/                    # 线粒体基因组组装
-│   ├── batch_mito_analysis.sh      # 批量组装流程
-│   └── stats_plots/                # 组装统计与可视化
+├── README.md
+├── figures/                           # Publication figures (PNG)
+│   ├── Figure1.png ~ Figure9.png
 │
-├── 02.annotation/                  # 基因组注释
-│   ├── gb/                         # GenBank 格式注释脚本
-│   │   ├── extract_cds_for_pan_genome.py
-│   │   ├── pangenome.quxian.py     # 泛基因组曲线
-│   │   ├── pangenome.bingtu.py     # 饼图可视化
-│   │   ├── pangenome.yanbenzhuzhuangtu.py  # 样本柱状图
-│   │   └── cunzaiqueshiretu.py     # 基因存在/缺失热图
-│   └── trna/                       # tRNA 注释
-│
-├── 03.pangenome/                   # 泛基因组构建 (Cactus)
-│   ├── mito_samples.txt            # 样本列表
-│   ├── generate_input.sh           # 生成 Cactus 输入
-│   ├── run_cactus.sh               # Cactus 运行脚本
-│   ├── run_cactus1.sh              # Cactus 步骤1
-│   ├── run_cactus2.sh              # Cactus 步骤2
-│   ├── run_cactus_3.sh             # Cactus 步骤3
-│   └── run_odgi.sh                 # ODGI 可视化
-│
-├── 04.variant_analysis/            # 变异检测与分析
-│   ├── vcf_cell/                   # VCF 变异统计
-│   │   ├── mito_gb_to_gff.py       # GB → GFF 转换
-│   │   ├── calculate_variant_density.py
-│   │   ├── gene_variant_stats.py
-│   │   └── publication_ready_charts.py
-│   └── pangenome_results/          # 泛基因组分析结果
-│       ├── analyze_graph_pangenome.py
-│       ├── corrected_graph_analysis.py
-│       ├── deep_graph_analysis.py
-│       ├── plot_pangenome_variants.py
-│       ├── plot_combined_figure.py
-│       └── plot_horizontal.py
-│
-├── 05.phylogeny/                   # 系统发育分析
-│   ├── build_phylogeny.py          # 建树流程
-│   ├── plot_tree.py                # 树的可视化
-│   └── data/                       # 基因序列与比对
-│
-├── 06.dnds/                        # dN/dS 选择压力
-│   ├── plot_dnds_ggplot.R          # R 可视化
-│   ├── dnds_data_for_R.csv         # 数据
-│   └── dnds_summary.tsv            # 汇总表
-│
-├── 07.intron_analysis/             # 内含子分析
-│   ├── plotD_intron_heatmap.R
-│   ├── plotE_gene_structure.R
-│   ├── plotF_intron_genome.R
-│   ├── plotG_intron_orf_pangenome.R
-│   └── data/                       # 内含子统计数据
-│
-├── 08.coverage_analysis/           # 覆盖深度分析
-│   ├── run_coverage.sh
-│   └── analyze_coverage.py
-│
-├── 09.rearrangement/               # 基因重排分析
-│   ├── plot_IR_mechanism.py
+├── Figure1/                           # Mitochondrial genome map
+├── Figure2/                           # tRNA secondary structure
+├── Figure3/                           # Repetitive sequence heatmap
+├── Figure4/                           # RSCU codon analysis
+│   └── mimazi.test1.R
+├── Figure5/                           # Ka/Ks selective pressure
+│   ├── kaks_15gene.R
+│   ├── KAKS_xiangxiantu.R
+│   └── plot_dnds_ggplot.R
+├── Figure6/                           # Nucleotide diversity + gene order
+│   ├── gene_pi_plot_english.R
+│   └── geneorder.duose.R
+├── Figure7/                           # Phylogeny + population structure
+│   ├── build_phylogeny.py
+│   ├── plot_tree.py
+│   ├── admixture.R / admixture.2.R / admixture.3.R
+│   ├── CVerror.R
+│   └── PCA3D.R
+├── Figure8/                           # Pan-genome + intron analysis
+│   ├── pangenome.quxian.py            # Pan-genome curve
+│   ├── pangenome.bingtu.py            # Pie chart
+│   ├── cunzaiqueshiretu.py            # PAV heatmap
+│   ├── COX1.R                         # Gene structure
+│   └── plotD~G_intron_*.R             # Intron analysis plots
+├── Figure9/                           # Graph pan-genome + SV
+│   ├── plot_pangenome_variants.py
 │   ├── plot_IR_mechanism_v2.py
 │   ├── plot_rearrangement.R
-│   └── tongji_sv.sh
+│   ├── ggtree_sv_tree.R
+│   └── analyze_coverage.py
 │
-├── figures/                        # 发表用图片
-├── README.md
-└── .gitignore
+└── workflows/                         # Analysis pipelines
+    ├── Assembly/                      # Genome assembly scripts
+    ├── Annotation/                    # Genome annotation scripts
+    └── Pangenome_Construction/        # Cactus pan-genome pipeline
 ```
 
-## 🔧 依赖软件
+## Environment Setup
 
-### 生物信息学工具
-| 软件 | 版本 | 用途 |
-|------|------|------|
-| Cactus | ≥ 2.6 | 泛基因组图构建 |
-| ODGI | - | 图基因组可视化 |
-| vg | - | 变异图操作 |
-| IQ-TREE | 2 | 系统发育建树 |
-| MAFFT | ≥ 7 | 序列比对 |
-| SAMtools | ≥ 1.15 | BAM 文件处理 |
-| Minimap2 | ≥ 2.24 | 序列比对 |
-| BCFtools | ≥ 1.15 | VCF 处理 |
-
-### Python 环境
+### Python
 ```bash
-pip install biopython matplotlib seaborn pandas numpy scipy networkx gffutils
+pip install biopython matplotlib seaborn pandas numpy scipy networkx
 ```
 
-### R 包
+### R
 ```R
-install.packages(c("ggplot2", "ggtree", "pheatmap", "dplyr", "tidyr", "reshape2"))
+install.packages(c("ggplot2", "pheatmap", "ggsci", "ggh4x", "plotly",
+                    "reshape2", "dplyr", "tidyr", "ape", "rgl"))
 if (!require("BiocManager")) install.packages("BiocManager")
-BiocManager::install(c("ggtree", "treeio"))
+BiocManager::install(c("ggtree", "treeio", "gggenes"))
 ```
 
-## 🚀 分析流程
+---
 
-### 1. 线粒体基因组组装
-```bash
-# 使用 MitoHiFi / GetOrganelle 等工具从 HiFi/Illumina 数据组装
-bash 01.assembly/batch_mito_analysis.sh
-```
+## Citation
 
-### 2. 基因组注释
-```bash
-# 使用 MITOS / MFAnnot 进行自动注释，人工校正
-# GenBank 格式注释文件存放在 02.annotation/gb/
-```
+> Ma R, Li W, Miao Y, Yang R, Shao Y, Shang J, Li Y, Gao Y, Bao D\*, Wu Y\*. Mitochondrial Graph-Based Pan-Genome Analysis of *Hypsizygus marmoreus*: Structural Variation, Adaptive Evolution and Its Implications for Germplasm Resource Improvement. *[Journal]*, 2025.
 
-### 3. Cactus 泛基因组构建
-```bash
-# 生成输入文件
-bash 03.pangenome/generate_input.sh
-# 运行 Cactus 多步流程
-bash 03.pangenome/run_cactus.sh
-bash 03.pangenome/run_cactus1.sh
-bash 03.pangenome/run_cactus2.sh
-bash 03.pangenome/run_cactus_3.sh
-# ODGI 可视化
-bash 03.pangenome/run_odgi.sh
-```
+---
 
-### 4. 变异检测与统计
-```bash
-python 04.variant_analysis/vcf_cell/gene_variant_stats.py
-python 04.variant_analysis/vcf_cell/calculate_variant_density.py
-python 04.variant_analysis/vcf_cell/publication_ready_charts.py
-```
+## License
 
-### 5. 系统发育分析
-```bash
-python 05.phylogeny/build_phylogeny.py   # 15 基因串联 + IQ-TREE
-python 05.phylogeny/plot_tree.py         # 可视化
-```
+This project is licensed under the MIT License.
 
-### 6. dN/dS 分析
-```bash
-Rscript 06.dnds/plot_dnds_ggplot.R
-```
+## Contact
 
-### 7. 内含子分析
-```bash
-Rscript 07.intron_analysis/plotD_intron_heatmap.R
-Rscript 07.intron_analysis/plotE_gene_structure.R
-Rscript 07.intron_analysis/plotF_intron_genome.R
-Rscript 07.intron_analysis/plotG_intron_orf_pangenome.R
-```
-
-### 8. 覆盖深度验证
-```bash
-bash 08.coverage_analysis/run_coverage.sh
-python 08.coverage_analysis/analyze_coverage.py
-```
-
-## 📋 样本信息
-
-本研究使用 **31 株真姬菇** 线粒体基因组，包括：
-- **4 株** 自测 HiFi 序列 (f2, f4, nn12-1, nn12-17)
-- **2 株** NCBI 参考基因组 (MF133443.1, MH382825.1)
-- **25 株** 公共数据库 SRA 数据 (SRR 系列)
-
-## 📄 引用
-
-如果本项目对你有帮助，请引用：
-
-> [论文信息待补充]
-
-## 📝 License
-
-本项目采用 MIT License 开源协议。
-
-## 📬 联系方式
-
-如有任何问题，请通过 [GitHub Issues](https://github.com/maruichenzhanghao/Hypsizygus-marmoreus-mito-Pan-genome/issues) 联系。
+For questions, please open a [GitHub Issue](https://github.com/maruichenzhanghao/Hypsizygus-marmoreus-mito-Pan-genome/issues).

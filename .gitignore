@@ -1,90 +1,53 @@
-# ============================================
-# Hypsizygus marmoreus Mitochondrial Pan-genome
-# .gitignore
-# ============================================
-
-# === 大型数据文件 (不上传) ===
-# FASTA 序列文件
+# Data and intermediate files
 *.fasta
 *.fa
 *.fna
-*.fasta.fai
-
-# BAM/SAM 比对文件
+*.fai
 *.bam
 *.bam.bai
 *.sam
-
-# SRA 原始数据
 *.sra
-sra_data/
-
-# GenBank 文件
-*.gb
-*.gbk
-*.gbff
-
-# VCF 大文件
 *.vcf
 *.vcf.gz
 *.vcf.gz.tbi
-*.raw.vcf*
-
-# HAL/GFA/GBZ 泛基因组图文件
 *.hal
 *.gbz
 *.gfa
+*.gfa.gz
+*.gaf
+*.gaf.gz
 *.min
 *.dist
 *.snarls
 *.paf
-
-# 压缩包
-*.zip
+*.gb
+*.gbk
+*.tar
 *.tar.gz
 *.tar.bz2
+*.zip
+*.tif
+*.xlsx
 
-# === Cactus 中间文件 ===
-chrom-alignments/
-chrom-subproblems/
-2025.7.17/
-2025.7.17jieguo/
+# Large output files
+*.ndb
+*.nhr
+*.nin
+*.not
+*.nsq
+*.ntf
+*.nto
 
-# === 图片文件 (Git LFS 或单独管理) ===
-# 保留 PDF，忽略大型 PNG
-# *.png
-# *.pdf
-
-# === Python 虚拟环境 ===
-.venv/
+# Python
 __pycache__/
 *.pyc
 *.pyo
+.venv/
 .ipynb_checkpoints/
 
-# === 编辑器/IDE 文件 ===
-.qoder/
+# IDE
 .vscode/
+.qoder/
 *.swp
-*.swo
 *~
 .DS_Store
-
-# === 特定大文件 ===
-mito.8.19gb.zip
-sanzai.zip
-SraRunTablequan.csv
-31_strains_annotation_gb.zip
-
-# === 排除微信截图等非代码文件 ===
-微信图片*
-*微信*
-
-# === 排除 OrthoFinder 大量输出 ===
-02.gb/fasta_output/OrthoFinder/Results*/
-
-# === 排除 depth 原始数据和大型输出 ===
-coverage_analysis/depth_data/
-
-# === 排除 Excel 文件 (可选保留) ===
-# *.xlsx
